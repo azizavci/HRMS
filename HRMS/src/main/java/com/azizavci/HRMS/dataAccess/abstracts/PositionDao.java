@@ -6,4 +6,6 @@ import com.azizavci.HRMS.entities.concretes.Position;
 
 public interface PositionDao extends JpaRepository<Position,Integer>  {
 
+	Position findByTitle(String title);
+	
 }

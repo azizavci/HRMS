@@ -27,10 +27,6 @@ public class EmployerConfirm {
 	@Column(name="id")
 	private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name="user_id")
-	private Employer employer;
-	
 	@Column(name="is_confirm")
 	private boolean isConfirm;
 	

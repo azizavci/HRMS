@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.azizavci.HRMS.business.abstracts.PositionService;
+import com.azizavci.HRMS.core.utilities.results.DataResult;
+import com.azizavci.HRMS.core.utilities.results.ErrorResult;
+import com.azizavci.HRMS.core.utilities.results.Result;
+import com.azizavci.HRMS.core.utilities.results.SuccessDataResult;
+import com.azizavci.HRMS.core.utilities.results.SuccessResult;
 import com.azizavci.HRMS.dataAccess.abstracts.PositionDao;
 import com.azizavci.HRMS.entities.concretes.Position;
 
@@ -17,15 +22,27 @@ public class PositionManager implements PositionService{
 	@Autowired
 	public PositionManager(PositionDao positionDao) {
 		
-		super();
 		this.positionDao = positionDao;
 		
 	}
 
 	@Override
-	public List<Position> getAll() {
+	public DataResult<List<Position>> getAll() {
 		
-		return this.positionDao.findAll();
+		return new SuccessDataResult<List<Position>>(positionDao.findAll(),"iş pozisyonları listelendi");
+		
+	}
+
+	@Override
+	public Result add(Position position) {
+
+		if (positionDao.findByTitle(position.getTitle())!=null) {
+			
+			return  new ErrorResult("bu iş pozisyonu sistemde mevcut");
+		}
+		
+		positionDao.save(position);
+		return new SuccessResult("iş pozisyonu eklendi");
 		
 	}
 

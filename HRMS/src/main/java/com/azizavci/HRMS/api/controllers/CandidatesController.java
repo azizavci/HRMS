@@ -8,37 +8,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.PositionService;
+import com.azizavci.HRMS.business.abstracts.CandidateService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Position;
+import com.azizavci.HRMS.entities.concretes.Candidate;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-
 @RestController
-@RequestMapping("/api/positions")
-public class PositionsController {
+@RequestMapping("/api/candidates")
+public class CandidatesController {
 
-	private PositionService positionService;
-		
-	@Autowired 
-	public PositionsController(PositionService positionService) {
+	private CandidateService candidateService;
+
+	@Autowired
+	public CandidatesController(CandidateService candidateService) {
 		super();
-		this.positionService = positionService;
+		this.candidateService = candidateService;
 	}
-
-	@GetMapping("/getall")
-	public DataResult<List<Position>> getAll(){
-		
-		return positionService.getAll();
-		
+	
+	@GetMapping("/getAll")
+	public DataResult<List<Candidate>> getAll(){
+		return candidateService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Position position) {
-		
-		return positionService.add(position);
-		
+	public Result add(@RequestBody Candidate candidate) {
+		System.out.println(candidate);
+		return candidateService.add(candidate);
 	}
+	
 }

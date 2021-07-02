@@ -15,10 +15,10 @@ import lombok.NoArgsConstructor;
 @Table(name="employees")
 @AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id" , referencedColumnName = "id")
 @EqualsAndHashCode(callSuper = false)
+@PrimaryKeyJoinColumn(name="user_id",referencedColumnName = "id")
 public class Employee extends User{
-
+	
 	@Column(name="first_name")
 	private String firstName;
 	

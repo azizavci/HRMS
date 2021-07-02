@@ -2,6 +2,9 @@ package com.azizavci.HRMS.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -12,13 +15,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="candidates")
-@AllArgsConstructor
 @NoArgsConstructor
-@PrimaryKeyJoinColumn(name = "user_id" , referencedColumnName = "id")
+@AllArgsConstructor
+@Table(name="candidates")
 @EqualsAndHashCode(callSuper = false)
-public class Candidate extends User {
-
+@PrimaryKeyJoinColumn(name="user_id",referencedColumnName = "id")
+public class Candidate extends User{
+		
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -30,5 +33,8 @@ public class Candidate extends User {
 	
 	@Column(name="birth_year")
 	private int birthYear;
+	
+	@Column(name="phone")
+	private String phone;
 	
 }

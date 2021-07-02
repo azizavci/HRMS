@@ -1,14 +1,12 @@
 package com.azizavci.HRMS.entities.concretes;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="verification_codes")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class VerificationCode {
 
 	@Id
@@ -31,10 +28,12 @@ public class VerificationCode {
 	@Column(name="characters")
 	private String characters;
 	
-	@Column(name="is_verified")
-	private String isVerified;
+	@OneToOne(mappedBy = "verificationCode")
+    @PrimaryKeyJoinColumn
+    private CandidateVerification candidateVerification;
 	
-	@Column(name="verification_date")
-	private LocalDate verificationDate=LocalDate.now();
+	@OneToOne(mappedBy = "verificationCode")
+    @PrimaryKeyJoinColumn
+    private EmployerVerification employerVerification;
 	
 }

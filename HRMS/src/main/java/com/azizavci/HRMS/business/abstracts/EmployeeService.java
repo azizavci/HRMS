@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Position;
+import com.azizavci.HRMS.entities.concretes.Employee;
 
-public interface PositionService {
+public interface EmployeeService {
 
-	DataResult<List<Position>> getAll(); 
-	Result add(Position position);
+	DataResult<List<Employee>> getAll();
+	Result add(Employee employee);
 	
 }

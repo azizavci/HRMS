@@ -7,17 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
+@Table(name="users")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
@@ -28,8 +30,11 @@ public class User {
 	
 	@Column(name="email")
 	private String email;
-	
+		
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="is_email_verified")
+	private boolean isEmailVerified;
 	
 }
