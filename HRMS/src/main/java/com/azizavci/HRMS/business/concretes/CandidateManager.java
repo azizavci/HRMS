@@ -40,10 +40,7 @@ public class CandidateManager implements CandidateService{
 	}
 
 	@Override
-	public Result add(Candidate candidate) {
-
-		
-		
+	public Result add(Candidate candidate) {	
 		
 		if (!candidateVerificationService.isCandidateVerified(candidate)) {
 			

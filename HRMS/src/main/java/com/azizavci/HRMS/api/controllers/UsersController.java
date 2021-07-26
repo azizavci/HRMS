@@ -16,8 +16,10 @@ public class UsersController {
 
 	@Autowired
 	public UsersController(UserService userService) {
+		
 		super();
-		this.userService = userService;
+		this.userService=userService;
+		
 	}
 	
 	
