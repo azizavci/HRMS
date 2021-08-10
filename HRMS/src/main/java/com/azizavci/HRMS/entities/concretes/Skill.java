@@ -1,6 +1,5 @@
 package com.azizavci.HRMS.entities.concretes;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,23 +21,29 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="cities")
-public class City {
+@Table(name="skills")
+public class Skill {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="city_name")
-	private String cityName;
+	@Column(name="branch")
+	private String branch;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "city")
-	private List<School> schools;
+	@Column(name="sub_branch")
+	private String subBranch;
 	
+	@Min(1)
+	@Max(10)
+	@NotNull
+	@Column(name="skill_level")
+	private int skillLevel;
+	
+	@NotNull
 	@ManyToOne()
-	@JoinColumn(name="city_id")
-	private City city;
+	@JoinColumn(name="candidate_id")
+	private Candidate candidate;
 	
 }

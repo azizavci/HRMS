@@ -9,35 +9,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.EmployerService;
+import com.azizavci.HRMS.business.abstracts.SchoolDepartmentService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Employer;
-
+import com.azizavci.HRMS.entities.concretes.SchoolDepartment;
 
 @RestController
-@RequestMapping("/api/employers")
-public class EmployersController {
+@RequestMapping("/api/schoolsDepartments")
+public class SchoolDepartmentsController {
 
-	private EmployerService employerService;
+	private SchoolDepartmentService schoolDepartmentService;
 
 	@Autowired
-	public EmployersController(EmployerService employerService) {
-		
+	public SchoolDepartmentsController(SchoolDepartmentService schoolDepartmentService) {
 		super();
-		this.employerService = employerService;
-	
+		this.schoolDepartmentService = schoolDepartmentService;
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	public DataResult<List<SchoolDepartment>> getAll(){
+		
+		return this.schoolDepartmentService.getAll();
+		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
-		System.out.println(employer);
-		return employerService.add(employer);
+	public Result add(@RequestBody SchoolDepartment schoolDepartment) {
+		
+		return this.schoolDepartmentService.add(schoolDepartment);
+	
 	}
 	
 	

@@ -9,37 +9,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.EmployerService;
+import com.azizavci.HRMS.business.abstracts.BriefService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Employer;
-
+import com.azizavci.HRMS.entities.concretes.Brief;
 
 @RestController
-@RequestMapping("/api/employers")
-public class EmployersController {
+@RequestMapping("/api/briefs")
+public class BriefsController {
 
-	private EmployerService employerService;
+	private BriefService briefService;
 
 	@Autowired
-	public EmployersController(EmployerService employerService) {
-		
+	public BriefsController(BriefService briefService) {
 		super();
-		this.employerService = employerService;
-	
+		this.briefService = briefService;
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	public DataResult<List<Brief>> getAll(){
+		
+		return this.briefService.getAll();
+		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
-		System.out.println(employer);
-		return employerService.add(employer);
-	}
+	public Result add(@RequestBody Brief brief) {
+		
+		return this.briefService.add(brief);
 	
+	}
 	
 	
 }

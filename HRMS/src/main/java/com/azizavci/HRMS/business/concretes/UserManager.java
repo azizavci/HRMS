@@ -1,16 +1,21 @@
 package com.azizavci.HRMS.business.concretes;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.azizavci.HRMS.business.abstracts.UserService;
 import com.azizavci.HRMS.core.services.verificationCodeSender.VerificationCodeSenderManager;
 import com.azizavci.HRMS.core.services.verificationCodeSender.VerificationCodeSenderService;
+import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.ErrorResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
+import com.azizavci.HRMS.core.utilities.results.SuccessDataResult;
 import com.azizavci.HRMS.core.utilities.results.SuccessResult;
 import com.azizavci.HRMS.dataAccess.abstracts.UserDao;
+import com.azizavci.HRMS.entities.concretes.User;
 
 import lombok.var;
 
@@ -63,6 +68,21 @@ public class UserManager implements UserService {
 		codeSender.sendVerificationCode(email, verificationCode);
 		
 		return new SuccessResult("Doğrulama kodu gönderildi");
+		
+	}
+
+	@Override
+	public DataResult<List<User>> getAll() {
+		
+		return new SuccessDataResult<List<User>>(this.userDao.findAll(),"kullanıcılar listelendi!");
+		
+	}
+
+	@Override
+	public Result add(User user) {
+		
+		this.userDao.save(user);
+		return new SuccessResult("yeni kullanıcı bilgisi eklendi!");
 		
 	}
 

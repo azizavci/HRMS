@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.EmployerService;
+import com.azizavci.HRMS.business.abstracts.JobExperienceService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Employer;
-
+import com.azizavci.HRMS.entities.concretes.JobExperience;
 
 @RestController
-@RequestMapping("/api/employers")
-public class EmployersController {
+@RequestMapping("/api/jobExperiences")
+public class JobExperiencesController {
 
-	private EmployerService employerService;
+	private JobExperienceService jobExperienceService;
 
 	@Autowired
-	public EmployersController(EmployerService employerService) {
+	public JobExperiencesController(JobExperienceService jobExperienceService) {
 		
 		super();
-		this.employerService = employerService;
+		this.jobExperienceService = jobExperienceService;
 	
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	public DataResult<List<JobExperience>> getAll(){
+		
+		return this.jobExperienceService.getAll();
+		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
-		System.out.println(employer);
-		return employerService.add(employer);
+	public Result add(@RequestBody JobExperience jobExperience) {
+		
+		return this.jobExperienceService.add(jobExperience);
+	
 	}
-	
-	
 	
 }

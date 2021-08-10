@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,18 +17,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
-public class Position {
+@Table(name="web_contacts")
+public class WebContact {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="title")
-	private String title;
+	@Column(name = "website_name")
+	private String websiteName;
 	
-	//@OneToMany(mappedBy = "position")
-	//private List<JobAdvert> jobAdverts;
+	@Column(name = "website_url")
+	private String websiteUrl;
+	
+	@ManyToOne()
+	@JoinColumn(name="candidate_id")
+	private Candidate candidate;
+	
 }

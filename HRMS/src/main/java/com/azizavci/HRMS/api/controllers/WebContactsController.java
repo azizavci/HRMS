@@ -9,37 +9,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.EmployerService;
+import com.azizavci.HRMS.business.abstracts.WebContactService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Employer;
-
+import com.azizavci.HRMS.entities.concretes.WebContact;
 
 @RestController
-@RequestMapping("/api/employers")
-public class EmployersController {
+@RequestMapping("/api/webContacts")
+public class WebContactsController {
 
-	private EmployerService employerService;
+	private WebContactService webContactService;
 
 	@Autowired
-	public EmployersController(EmployerService employerService) {
-		
+	public WebContactsController(WebContactService webContactService) {
 		super();
-		this.employerService = employerService;
-	
+		this.webContactService = webContactService;
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	public DataResult<List<WebContact>> getAll(){
+		
+		return webContactService.getAll();
+		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
-		System.out.println(employer);
-		return employerService.add(employer);
-	}
+	public Result add(@RequestBody WebContact webContact) {
+
+		return webContactService.add(webContact);
 	
+	}
 	
 	
 }

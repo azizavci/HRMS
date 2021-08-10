@@ -1,10 +1,7 @@
 package com.azizavci.HRMS.entities.concretes;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -35,7 +32,7 @@ public class Employer extends User {
 	@Column(name="phone")
 	private String phone;
 	
-	@OneToMany(mappedBy = "employer")
-	private List<JobAdvert> jobAdverts;
+	//@OneToMany(mappedBy = "employer")
+	//private List<JobAdvert> jobAdverts;
 
 }

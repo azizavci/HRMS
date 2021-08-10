@@ -1,12 +1,13 @@
 package com.azizavci.HRMS.entities.concretes;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,28 +19,28 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="users")
-@AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+@AllArgsConstructor
+@Table(name="images")
+public class Image {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
 	
-	@Column(name="email")
-	private String email;
-		
-	@Column(name="password")
-	private String password;
+	@Column(name = "image_url")
+	private String imageUrl;
 	
-	@Column(name="is_email_verified")
-	private boolean isEmailVerified;
+	@Column(name = "created_at")
+	private LocalDate createdAt = LocalDate.now();
+	
+	@Column(name = "image_available")
+	private Boolean isImageAvailable;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy = "user")
-	private Image image;
+	@OneToOne()
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 }

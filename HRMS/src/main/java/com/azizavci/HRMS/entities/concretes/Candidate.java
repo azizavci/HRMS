@@ -1,9 +1,15 @@
 package com.azizavci.HRMS.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +39,30 @@ public class Candidate extends User{
 	
 	@Column(name="phone")
 	private String phone;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<JobExperience> jobExperiences;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<EducationalBackground> educationalBackgrounds;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<LanguagesOfCandidate> languagesOfCandidates;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<Skill> skills;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<WebContact> webContacts;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "candidate")
+	private Brief brief;
+	
 	
 }

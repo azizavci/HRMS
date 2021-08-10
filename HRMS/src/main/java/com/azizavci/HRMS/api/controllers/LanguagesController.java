@@ -9,37 +9,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azizavci.HRMS.business.abstracts.EmployerService;
+import com.azizavci.HRMS.business.abstracts.LanguageService;
 import com.azizavci.HRMS.core.utilities.results.DataResult;
 import com.azizavci.HRMS.core.utilities.results.Result;
-import com.azizavci.HRMS.entities.concretes.Employer;
-
+import com.azizavci.HRMS.entities.concretes.Language;
 
 @RestController
-@RequestMapping("/api/employers")
-public class EmployersController {
+@RequestMapping("/api/languages")
+public class LanguagesController {
 
-	private EmployerService employerService;
+	private LanguageService languageService;
 
 	@Autowired
-	public EmployersController(EmployerService employerService) {
-		
+	public LanguagesController(LanguageService languageService) {
 		super();
-		this.employerService = employerService;
-	
+		this.languageService = languageService;
 	}
 	
+	
 	@GetMapping("/getAll")
-	public DataResult<List<Employer>> getAll(){
-		return employerService.getAll();
+	public DataResult<List<Language>> getAll(){
+		
+		return this.languageService.getAll();
+		
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Employer employer) {
-		System.out.println(employer);
-		return employerService.add(employer);
+	public Result add(@RequestBody Language language) {
+		
+		return this.languageService.add(language);
+		
 	}
-	
-	
-	
 }
